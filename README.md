@@ -1,66 +1,45 @@
-# 🖼️ Quadtree-Based Image Compression
+# Quadtree-Based Image Compression
 
-A C++ implementation of image compression using the **Quadtree** algorithm and the **Divide and Conquer** paradigm. This project analyzes and compresses images by partitioning them into smaller blocks, preserving detail in complex regions and simplifying uniform ones.
+A C++ implementation of image compression using the Quadtree algorithm and the Divide and Conquer paradigm. Images are partitioned recursively into quadrants, preserving detail in complex regions and averaging out uniform ones to reduce file size.
 
 ---
 
-## 📦 Features
+## Features
 
-- Compress images using **quadtree decomposition**
-- Choose from multiple error metrics:
+- Compress images using quadtree decomposition
+- Multiple error metrics to control compression quality:
   - Variance
   - Mean Absolute Deviation (MAD)
   - Max Pixel Difference (MPD)
   - Entropy
 - Adjustable compression threshold and minimum block size
-- Target compression ratio (with automatic threshold search)
-- Visual splash screen (just for fun 😄)
+- Target compression ratio mode (automatic threshold search)
+- ASCII splash screen
 
 ---
 
-## 🧠 How It Works
+## How It Works
 
-This program divides an image into 4 quadrants recursively until each block is "simple" enough based on the selected error metric and threshold. Each homogeneous block is normalized (i.e., replaced with the average color), while complex ones are split further.
-
-The goal is to minimize image size while preserving as much visual fidelity as possible.
+The program divides an image into 4 quadrants recursively. If a block is "simple enough" (below the error threshold), it is replaced with the average color of that block. Complex blocks are split further. The result is a compressed image where uniform regions are coarsely approximated and detailed regions retain more fidelity.
 
 ---
 
-## 🛠️ Requirements
+## Requirements
 
-- Windows :(
-
----
-
-## 🚀 How to Run
-
-1. **Clone the repo**
-   ```bash
-   git clone https://github.com/yourusername/quadtree-compression.git
-   cd quadtree-compression
-   ```
-
-2. **Run the program**  
-   Simply **double-click** the file:
-   ```
-   bin/Quad.exe
-   ```
-
-   > ⚠️ Make sure `stb_image.h` and `stb_image_write.h` are present in the working directory, as well as the required image file(s).
+- Windows
+- `stb_image.h` and `stb_image_write.h` in the working directory
 
 ---
 
-## 📸 Input Format
+## Usage
 
-- Supports standard image formats (e.g., PNG, JPG) via `stb_image`.
-- Input path is entered interactively.
-- Output is saved as PNG.
+Run the pre-built binary:
+```
+bin/Quad.exe
+```
 
----
-
-## 📊 Sample CLI Flow
-
-```bash
+The program prompts interactively:
+```
 Enter the path to your image:
 > input.png
 
@@ -86,30 +65,33 @@ Enter the output path for the processed image:
 
 ---
 
-## 📈 Compression Metrics
+## Input / Output
 
-- **Size before/after compression**
-- **Compression ratio**
-- **Tree depth**
-- **Total number of nodes**
-
-These are shown after the compression process is complete.
+- Supports standard image formats (PNG, JPG) via `stb_image`
+- Input path is entered interactively
+- Output is saved as PNG
 
 ---
 
+## Output Metrics
 
-## 🙋‍♂️ Authors
+After compression, the program reports:
 
-- **Darrel Adinarya Sunanda** – [@Darsuas](https://github.com/Darsuas)
+| Metric | Description |
+| :--- | :--- |
+| Size before / after | File sizes in bytes |
+| Compression ratio | Ratio of output to input size |
+| Tree depth | Maximum depth of the quadtree |
+| Total nodes | Number of nodes in the quadtree |
 
 ---
 
-## 📄 License
+## Author
 
-This project is open-source and available under the [MIT License](LICENSE).
+Darrel Adinarya Sunanda `13523061` — [@Darsua](https://github.com/Darsua)
 
 ---
 
-## 🌸 ASCII Splash Screen
+## License
 
-Features a fun ASCII art of Miku to brighten your day before you compress things 😊
+MIT
